@@ -1,3 +1,7 @@
+import { mostrarAlerta } from '/js/funciones.js';
+import { nuevoCliente } from '/js/API.js';
+
+
 (function() {
     const formulario = document.querySelector('#formulario');
     formulario.addEventListener('submit', validarCliente);
@@ -10,8 +14,25 @@
         const telefono = document.querySelector('#telefono').value;
         const empresa = document.querySelector('#empresa').value;
 
-        if() {
-            
+        const cliente = {
+            nombre,
+            email,
+            telefono,
+            empresa
         }
+
+        if(validar(cliente)) {
+            // Mostrar Mensaje
+            mostrarAlerta("Todos los campos son obligatorios");
+            return;
+        }
+        
+        nuevoCliente(cliente);
+
     };
+
+    function validar(obj) {
+        return !Object.values(obj).every(input => input !== '');
+    }
+
 })();
